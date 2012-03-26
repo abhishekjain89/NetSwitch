@@ -3,6 +3,8 @@ package com.netswitch;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.netswitch.utils.WifiSwitchUtil;
+
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -29,79 +31,19 @@ public class NetSwitchActivity extends Activity {
 			public void onClick(View v) 
 			{
 				Context mContext = getApplicationContext();
-				WifiSwitchUtil wifi = new WifiSwitchUtil();
+				
 				boolean currentstate;
 				try{
-					currentstate = wifi.getWifiState(mContext);
+					currentstate = WifiSwitchUtil.getWifiState(mContext);
 				}
 				catch (NullPointerException e)//If WIFI state doesn't return a value, sets the WIFI state to true
 				{
 					currentstate = false;
 				}
-				wifi.changeWifiState(!currentstate, mContext);
+				WifiSwitchUtil.changeWifiState(!currentstate, mContext);
 
 			}    
 		});
 
-		final Button network_button = (Button) findViewById(R.id.network_switch);
-		network_button.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v) 
-			{
-				Context mContext = getApplicationContext();
-
-				WifiManager mWifi = (WifiManager)mContext.getSystemService(Context.WIFI_SERVICE);
-				mWifi.setWifiEnabled(false);
-				
-				Context mContext1 = getApplicationContext();
-				//ConnectivityManager connectivityManager =(ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE); 
-				//NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
-				boolean enable=true;
-				ConnectivityManager cm = (ConnectivityManager) mContext1 .getSystemService(Activity.CONNECTIVITY_SERVICE);
-				Method m = getMethodFromClass(cm, "setMobileDataEnabled");
-				runMethodofClass(cm, m, enable);
-			}
-			
-			private Method getMethodFromClass(Object obj, String methodName) {
-			 
-			    Class<?> whichClass = null;
-			    try {
-			        whichClass = Class.forName(obj.getClass().getName());
-			     } catch (ClassNotFoundException e2) {
-			         Log.d(TAG, "class not found");
-			     }
-			     Method method = null;
-			     try {
-			        //method = whichClass.getDeclaredMethod(methodName);
-			        Method[] methods = whichClass.getDeclaredMethods();
-			        for (Method m : methods) {
-			            if (m.getName().contains(methodName)) {
-			                method = m;
-			            }
-			        }
-			     } catch (SecurityException e2) {
-			       Log.d(TAG, "SecurityException for " + methodName);
-			      }
-			      return method;
-			}
-			
-			private Object runMethodofClass(Object obj, Method method, Object... argv) {
-			    Object result = null;
-			    if (method == null) return result;
-			    method.setAccessible(true);
-			    try {
-			       result = method.invoke(obj, argv);
-			    } catch (IllegalArgumentException e) {
-			         Log.d(TAG, "IllegalArgumentException for " + method.getName());
-			    } catch (IllegalAccessException e) {
-			         Log.d(TAG, "IllegalAccessException for " + method.getName());
-			    } catch (InvocationTargetException e) {
-			          Log.d(TAG, "InvocationTargetException for " + method.getName()
-			            + "; Reason: " + e.getLocalizedMessage());
-			    }
-			   return result;
-			}
-
-		});
 	}
 }
