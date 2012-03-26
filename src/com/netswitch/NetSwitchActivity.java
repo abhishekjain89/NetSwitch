@@ -25,7 +25,7 @@ public class NetSwitchActivity extends Activity {
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		final Button wifi_button = (Button) findViewById(R.id.wifi_switch);
+		final Button wifi_button = (Button) findViewById(R.id.aboutus);
 		wifi_button.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v) 

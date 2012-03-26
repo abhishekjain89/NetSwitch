@@ -226,7 +226,7 @@ public class MeasurementTask extends ServerTask{
 	}
 
 
-	private class MeasurementListener extends BaseResponseListener{
+	public class MeasurementListener extends BaseResponseListener{
 
 		public void onCompletePing(Ping response) {
 			pings.add(response);

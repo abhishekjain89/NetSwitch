@@ -56,6 +56,16 @@ public class WifiUtil {
 		return wifi;
 		
 	}
+	
+	public Wifi getWifiSimple(Context context) {
+		
+		Values session = (Values) context.getApplicationContext();
+		
+		wifi = getWifiDetail(context);
+		
+		return wifi;
+		
+	}
 
 
 	public NeighborResult neighborResult = new NeighborResult(){

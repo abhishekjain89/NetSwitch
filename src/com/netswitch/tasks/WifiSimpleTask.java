@@ -9,9 +9,9 @@ import com.netswitch.models.Wifi;
 import com.netswitch.utils.NeighborWifiUtil;
 import com.netswitch.utils.WifiUtil;
 
-public class WifiTask extends ServerTask{
+public class WifiSimpleTask extends ServerTask{
 
-	public WifiTask(Context context, Map<String, String> reqParams,
+	public WifiSimpleTask(Context context, Map<String, String> reqParams,
 			ResponseListener listener) {
 		super(context, reqParams, listener);
 		// TODO Auto-generated constructor stub
@@ -21,9 +21,9 @@ public class WifiTask extends ServerTask{
 	public void runTask() {
 		
 		WifiUtil w = new WifiUtil();
-		Wifi wifiList = w.getWifi(this.getContext());
+		Wifi wifiList = w.getWifiSimple(this.getContext());
 		
-		this.getResponseListener().onCompleteWifi(wifiList );
+		this.getResponseListener().onCompleteWifi(wifiList);
 		
 	}
 
