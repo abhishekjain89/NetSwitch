@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relative"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#FFF"
-    android:weightSum="1" >
+    android:orientation="vertical" >
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linear"
         android:layout_width="fill_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/btn_blue"
         android:orientation="vertical"
         android:padding="0dp" >
 
         <TextView
             android:id="@+id/tagline"
-            android:layout_marginTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
             android:gravity="center"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -33,61 +31,72 @@
         android:id="@+id/welcome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/linear"
         android:gravity="center"
-        android:text="Welcome!"
+        android:text="Current Connection"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000"
         android:textSize="25dp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/current"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome"
-        android:orientation="vertical" >
+        android:gravity="center"
+        android:text="Wifi"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#F00"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+    
+    <TextView
+        android:id="@+id/welcome1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="Advised Switch"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/test"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-           
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            
-            android:background="@drawable/btn_blue"
-            android:text="@string/testButton"
-            android:textColor="#FFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/settings"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            
-            android:background="@drawable/btn_blue"
-            android:text="Settings"
-            android:textColor="#FFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/advised"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Mobile"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#F00"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+    
+	
+    <TextView
+        android:id="@+id/key"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_mid"
+        android:gravity="center_horizontal"
+        android:ellipsize="end"
+        android:padding="0px"
+        android:text="Key"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFF"
+        android:textSize="22dp" >
+    </TextView>
+    
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         
-         <Button
-            android:id="@+id/aboutus"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            
-            android:background="@drawable/btn_blue"
-            android:text="About Us"
-            android:textColor="#FFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2">
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
