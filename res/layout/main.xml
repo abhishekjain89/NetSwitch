@@ -4,9 +4,16 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/wifi_switch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:text="Change to Wifi" />
+
+    <Button
+        android:id="@+id/network_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change to 3G" />
 
 </LinearLayout>
