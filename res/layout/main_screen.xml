@@ -66,10 +66,11 @@
     <Button
         android:id="@+id/settings"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:text="Configure"
-        android:textColor="#000"
-        android:textSize="25dp"
+        android:textColor="#FFF"
+        android:textSize="28dp"
+         android:background="@drawable/btn_blue"
         android:textStyle="bold" />
 
     <LinearLayout
