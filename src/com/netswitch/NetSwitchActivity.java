@@ -29,8 +29,16 @@ public class NetSwitchActivity extends Activity {
 			public void onClick(View v) 
 			{
 				Context mContext = getApplicationContext();
-				WifiManager mWifi = (WifiManager)mContext.getSystemService(Context.WIFI_SERVICE);
-				mWifi.setWifiEnabled(true);
+				WifiSwitchUtil wifi = new WifiSwitchUtil();
+				boolean currentstate;
+				try{
+					currentstate = wifi.getWifiState(mContext);
+				}
+				catch (NullPointerException e)//If WIFI state doesn't return a value, sets the WIFI state to true
+				{
+					currentstate = false;
+				}
+				wifi.changeWifiState(!currentstate, mContext);
 
 			}    
 		});
