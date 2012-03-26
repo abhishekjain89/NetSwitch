@@ -10,7 +10,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linear"
         android:layout_width="fill_parent"
-        android:layout_height="110dp"
+        android:layout_height="60dp"
         android:background="@drawable/btn_blue"
         android:orientation="vertical"
         android:padding="0dp" >
