@@ -44,7 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Wifi"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#F00"
         android:textSize="35dp"

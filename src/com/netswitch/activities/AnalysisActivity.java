@@ -59,6 +59,7 @@ public class AnalysisActivity extends Activity
 	private Button aboutusButton;
 	private ListView listview;
 	private TextView apptext;
+	private TextView current_conn;
 	private TextView devicetext;
 	//private TextView tv;
 	private Activity activity;
@@ -86,6 +87,7 @@ public class AnalysisActivity extends Activity
 		listview = (ListView) findViewById(R.id.allview);
 		testButton=(Button)findViewById(R.id.test);
 		settingsButton=(Button)findViewById(R.id.settings);
+		current_conn=(TextView)findViewById(R.id.current);
 		aboutusButton=(Button)findViewById(R.id.aboutus);
 
 		ThreadPoolHelper serverhelper = new ThreadPoolHelper(10,30);
@@ -219,6 +221,9 @@ public class AnalysisActivity extends Activity
 	 		ArrayList<Row> cells = new ArrayList<Row>();
 			
 	 		try {
+	 			
+	 			current_conn.setText(measure.getNetwork().getConnectionType());
+	 			
 	 			cells.add(new Row("Status"));
 	 			if(measure.getWifi()!=null)
 	 				if(measure.getWifi().strength>1)

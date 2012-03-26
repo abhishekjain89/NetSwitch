@@ -100,20 +100,10 @@ Questions regarding our source code, suggestions, reviews, Privacy Policy, or ot
 
             <Button
                 android:id="@+id/accept"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="Accept"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/reject"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="Reject"
                 android:textColor="#000"
                 android:textSize="20dp"
                 android:textStyle="bold" />
