@@ -2,22 +2,98 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.netswitch"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.0" >
 
     <uses-sdk android:minSdkVersion="8" />
 
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.BATTERY_STATS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <application
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:name=".Values" >
         <activity
+            android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
-            android:name=".NetSwitchActivity" >
+            android:name=".activities.PrivacyActivity"
+            android:screenOrientation="nosensor" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".activities.AnalysisActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".activities.DisplayActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".activities.UserFormActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".activities.AboutUsActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".activities.RunActivity"
+            android:screenOrientation="nosensor" >
+            <uses-library android:name="com.google.android.maps" />
+        </activity>
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <service
+            android:enabled="true"
+            android:name=".services.PerformanceServiceAll"
+            android:permission="android.permission.INTERNET" >
+        </service>
+
+        <receiver android:name=".receivers.StartupIntentReceiver" >
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
