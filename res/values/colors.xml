@@ -2,5 +2,8 @@
 <resources>
 
     <color name="transparent">#00000000</color>
+    <color name="light_color">#D4266C</color>
+    <color name="mid_color">#AD1F58</color>
+    <color name="dark_color">#7A163E</color>
 
 </resources>

@@ -47,50 +47,61 @@
         android:text="Wifi"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#F00"
-        android:textSize="25dp"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
     <ListView
         android:id="@+id/allview"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_above="@+id/test"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginBottom="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:cacheColorHint="#00000000"
         android:fadingEdge="none" >
     </ListView>
 
     <Button
-        android:id="@+id/test"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/testButton"
-        android:textColor="#000"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-
-    <Button
         android:id="@+id/settings"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:text="Settings"
+        android:text="Configure"
         android:textColor="#000"
         android:textSize="25dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/aboutus"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linear"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:text="About Us"
-        android:textColor="#000"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="162dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/testButton"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/aboutus"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            
+            android:text="About Us"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -2,8 +2,8 @@
 <resources>
     <string name="hello">Hello World, PingActivity!</string>
     <string name="app_name">NetSwitch</string>
-    <string name="testButton">Manual Run</string>
-    <string name="configButton">Settings</string>
+    <string name="testButton">Test</string>
+    <string name="configButton">Configure</string>
     <string name="cancelButton">Cancel</string>
     <string name="saveButton">Save</string>
     <string name="backButton">Back</string>
