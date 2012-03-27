@@ -68,9 +68,8 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:text="Configure"
-        android:textColor="#FFF"
+        android:textColor="#000"
         android:textSize="28dp"
-         android:background="@drawable/btn_blue"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -78,7 +77,6 @@
         android:id="@+id/linear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        
         android:orientation="horizontal"
         android:padding="0dp"
         android:weightSum="2">
@@ -97,8 +95,7 @@
         <Button
             android:id="@+id/aboutus"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            
+            android:layout_height="50dp"            
             android:text="About Us"
             android:textColor="#000"
             android:textSize="25dp"
