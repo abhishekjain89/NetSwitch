@@ -84,14 +84,14 @@ public class PrivacyActivity extends Activity
 		serverhelper = new ThreadPoolHelper(5,10);
 		
 		acceptButton = (Button) findViewById(R.id.accept);
-		rejectButton = (Button) findViewById(R.id.reject);
+		/*rejectButton = (Button) findViewById(R.id.reject);
 		
 		rejectButton.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 
 				finish();
 			}
-		});
+		});*/
 		
 		acceptButton.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
@@ -114,6 +114,5 @@ public class PrivacyActivity extends Activity
 	        //tv.setText(extras!=null ? extras.getString("returnKey") : "empty");
         }
     }
-	
-	
+		
 }
