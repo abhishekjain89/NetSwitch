@@ -49,7 +49,7 @@
         android:textColor="#F00"
         android:textSize="35dp"
         android:textStyle="bold" />
-    
+
     <TextView
         android:id="@+id/welcome1"
         android:layout_width="fill_parent"
@@ -72,31 +72,73 @@
         android:textColor="#F00"
         android:textSize="35dp"
         android:textStyle="bold" />
-    
-	
+
     <TextView
         android:id="@+id/key"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_blue_mid"
-        android:gravity="center_horizontal"
         android:ellipsize="end"
+        android:gravity="center_horizontal"
         android:padding="0px"
-        android:text="Key"
+        android:text="Wifi Settings"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFF"
-        android:textSize="22dp" >
-    </TextView>
-    
+        android:textSize="22dp" />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        
         android:orientation="horizontal"
         android:padding="0dp"
-        android:weightSum="2">
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/wifi_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.03"
+            android:text="On" />
+
+        <Button
+            android:id="@+id/wifi_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:text="Off" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/key"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_mid"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:padding="0px"
+        android:text="Mobile Network"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFF"
+        android:textSize="22dp" >
+    </TextView>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/mobile_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
+
     </LinearLayout>
 
 </LinearLayout>

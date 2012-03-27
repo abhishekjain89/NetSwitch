@@ -50,7 +50,6 @@ public class RunActivity extends BaseActivityGroup
 	private Activity activity;
 	private boolean firstPing=true;
 	
-
 	public ArrayList<Model> items;
 	public ListView listview;
 	public ListAdapter listadapter;
