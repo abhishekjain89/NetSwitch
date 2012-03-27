@@ -20,7 +20,7 @@ public class WifiSwitchUtil{
 	}
 	
 	
-	public static boolean getWifiState(Context context)
+	public static boolean isWifiConnection(Context context)
 	{
 		String service = Context.CONNECTIVITY_SERVICE;
 		ConnectivityManager connectivity = (ConnectivityManager)context.getSystemService(service);

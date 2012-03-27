@@ -67,6 +67,12 @@
             android:name=".activities.UserFormActivity"
             android:screenOrientation="nosensor" >
         </activity>
+         <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".NetSwitchActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"

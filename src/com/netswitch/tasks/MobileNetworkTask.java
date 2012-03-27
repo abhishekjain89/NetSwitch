@@ -85,18 +85,9 @@ public class MobileNetworkTask extends ServerTask{
 		serverhelper.execute(new DeviceTask(getContext(),new HashMap<String,String>(), new MeasurementListener(), measurement));
 		serverhelper.execute(new WifiTask(getContext(),new HashMap<String,String>(), new MeasurementListener()));
 		signalRunning = true;
-		//wifiRunning = true;
-		//WifiHandler.sendEmptyMessage(0);
-		/*
-		if(false){
-			GPSHandler.sendEmptyMessage(0);
-			gpsRunning = true;
-		}
-		else{
-			gpsRunning = false;
-		}*/
+
 		SignalHandler.sendEmptyMessage(0);
-		
+
 		try {
 			Thread.sleep(session.NORMAL_SLEEP_TIME);
 		} catch (InterruptedException e1) {
@@ -112,7 +103,7 @@ public class MobileNetworkTask extends ServerTask{
 				return;	
 			}
 		}
-		
+
 		while(signalRunning){
 			try {
 				Thread.sleep(session.NORMAL_SLEEP_TIME);
@@ -124,6 +115,7 @@ public class MobileNetworkTask extends ServerTask{
 		getResponseListener().onCompleteMeasurement(measurement);
 
 	}
+
 
 	@Override
 	public String toString() {
@@ -226,7 +218,7 @@ public class MobileNetworkTask extends ServerTask{
 
 		}
 	}
-	
+
 	private Handler SignalHandler = new Handler() {
 		public void  handleMessage(Message msg) {
 			try {
@@ -236,7 +228,7 @@ public class MobileNetworkTask extends ServerTask{
 			}
 		}
 	};
-	
+
 	public SignalResult signalResult = new SignalResult() { 
 		public void gotSignal(String signal) {
 			(new MeasurementListener()).onCompleteSignal(signal);

@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netswitch.NetSwitchActivity;
 import com.netswitch.Values;
 import com.netswitch.activities.AboutUsActivity.Listener;
 import com.netswitch.helpers.ServiceHelper;
@@ -68,9 +69,6 @@ public class AnalysisActivity extends Activity
 	private Values session = null;
 	
 
-
-
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -106,7 +104,7 @@ public class AnalysisActivity extends Activity
 		testButton.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 
-				ServiceHelper.processStopService(activity);
+				
 
 				Intent myIntent = new Intent(v.getContext(), RunActivity.class);
 				startActivity(myIntent);
@@ -115,8 +113,7 @@ public class AnalysisActivity extends Activity
 
 		settingsButton.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
-				Intent myIntent = new Intent(v.getContext(), UserFormActivity.class);
-				myIntent.putExtra("force",true);
+				Intent myIntent = new Intent(v.getContext(), NetSwitchActivity.class);
 				startActivity(myIntent);
 			}
 		});
