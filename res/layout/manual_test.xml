@@ -19,7 +19,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:background="@drawable/btn_red"
-                android:text="Loading ..."
+                android:text="Loading ...   This may take upto 45 seconds"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFF"
                 android:textSize="13dp" />

@@ -56,11 +56,12 @@ public class MobileNetworkTask extends ServerTask{
 
 	ThreadPoolHelper serverhelper;
 	Measurement measurement; 
+	int wait_time = 0;
 	public boolean signalRunning = false;
 
-	public MobileNetworkTask(Context context,ResponseListener listener) {
+	public MobileNetworkTask(Context context,int wait,ResponseListener listener) {
 		super(context, new HashMap<String,String>(), listener);
-
+		wait_time = wait;
 		ThreadPoolHelper serverhelper = new ThreadPoolHelper(getValues().THREADPOOL_MAX_SIZE,getValues().THREADPOOL_KEEPALIVE_SEC);
 	}
 
@@ -76,14 +77,19 @@ public class MobileNetworkTask extends ServerTask{
 	public void runTask() {
 
 		measurement = new Measurement();
-
+		try {
+			Thread.sleep(wait_time);
+		} catch (InterruptedException e1) {
+			this.killAll();
+			return;
+		}
 		// TODO Run ping task with list of things such as ip address and number of pings	
 		//android.os.Debug.startMethodTracing("lsd");
 		Values session = this.getValues();
 		ThreadPoolHelper serverhelper = new ThreadPoolHelper(session.THREADPOOL_MAX_SIZE,session.THREADPOOL_KEEPALIVE_SEC);
 
 		serverhelper.execute(new DeviceTask(getContext(),new HashMap<String,String>(), new MeasurementListener(), measurement));
-		serverhelper.execute(new WifiTask(getContext(),new HashMap<String,String>(), new MeasurementListener()));
+		serverhelper.execute(new WifiSimpleTask(getContext(),new HashMap<String,String>(), new MeasurementListener()));
 		signalRunning = true;
 
 		SignalHandler.sendEmptyMessage(0);
@@ -164,7 +170,7 @@ public class MobileNetworkTask extends ServerTask{
 			int i = 100;
 			while(network == null) {
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -174,8 +180,16 @@ public class MobileNetworkTask extends ServerTask{
 					break;
 				}
 			}
-			network.setSignalStrength("" + signalStrength);
-			measurement.setNetwork(network);
+			if(network!=null){
+				try{
+					network.setSignalStrength("" + signalStrength);
+				}
+				catch(Exception e){
+					network.setSignalStrength("");
+				}
+
+				measurement.setNetwork(network);
+			}
 		}
 		public void onCompleteUsage(Usage usage) {
 

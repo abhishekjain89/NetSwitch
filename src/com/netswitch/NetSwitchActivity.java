@@ -28,6 +28,7 @@ import com.netswitch.utils.WifiSwitchUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -64,35 +65,45 @@ public class NetSwitchActivity extends Activity {
 		wifiOff = (Button) findViewById(R.id.wifi_off);
 		mobile_settings = (Button) findViewById(R.id.mobile_settings);
 
-		serverhelper = new ThreadPoolHelper(10,30);
+		serverhelper = new ThreadPoolHelper(1,30);
 
-		UpdateValues();
+		UpdateValues(0);
 
 
 		wifiOn.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 				WifiSwitchUtil.changeWifiState(true,activity);
+				UpdateValues(6000);
 			}
 		});
 
 		wifiOff.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 				WifiSwitchUtil.changeWifiState(false,activity);
+				UpdateValues(6000);
 			}
 		});
-		
+
 		mobile_settings.setOnClickListener(new OnClickListener()  {
-			public void onClick(View v) {	
-				
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+				intent.setClassName("com.android.phone", "com.android.phone.Settings");
+				startActivity(intent);
+				UpdateValues(6000);
 			}
 		});
-		
-		
+
+
 	}
 
-	public void UpdateValues(){
-		serverhelper.execute(new MobileNetworkTask(this,new Listener()));
+	public void UpdateValues(int t){
+		serverhelper.execute(new MobileNetworkTask(this,t,new Listener()));
+		if(t>0){
+			serverhelper.execute(new MobileNetworkTask(this,2*t,new Listener()));
+			
+		}
 	}
+
 
 	private Handler UIHandler = new Handler(){
 		public void  handleMessage(Message msg) {
@@ -101,12 +112,16 @@ public class NetSwitchActivity extends Activity {
 			ArrayList<Row> cells = new ArrayList<Row>();
 
 			try {
-
-				current_conn.setText(measure.getNetwork().getConnectionType());
+				if(measure.getNetwork().getConnectionType().length()>0)
+					current_conn.setText(measure.getNetwork().getConnectionType());
+				else{
+					current_conn.setText("None");
+				}
+				
 				String advised_text = "Mobile";
 				if(measure.getWifi()!=null)
-	 				if(measure.getWifi().strength>1)
-	 					if(measure.getWifi().strength>5) advised_text = "Wifi";
+					if(measure.getWifi().strength>1)
+						if(measure.getWifi().strength>5) advised_text = "Wifi";
 
 				advised.setText(advised_text);
 

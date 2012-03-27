@@ -98,7 +98,7 @@ public class AnalysisActivity extends Activity
 
 		serverhelper = new ThreadPoolHelper(10,30);
 
-		serverhelper.execute(new MobileNetworkTask(this,new Listener()));
+		serverhelper.execute(new MobileNetworkTask(this,0,new Listener()));
 
 
 		testButton.setOnClickListener(new OnClickListener()  {

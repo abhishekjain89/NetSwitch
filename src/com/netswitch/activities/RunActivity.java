@@ -36,6 +36,7 @@ import com.netswitch.models.Sim;
 import com.netswitch.models.Throughput;
 import com.netswitch.models.Usage;
 import com.netswitch.models.Wifi;
+import com.netswitch.tasks.MeasurementSlimTask;
 import com.netswitch.tasks.MeasurementTask;
 import com.netswitch.ui.adapter.ListAdapter;
 import com.netswitch.R;
@@ -76,7 +77,7 @@ public class RunActivity extends BaseActivityGroup
 		session.initDataStore();
 		items = new ArrayList<Model>();
 		//listadapter = new ListAdapter(activity,noteButton,R.layout.item_view,items);
-		serverhelper.execute(new MeasurementTask(activity,true,true,true, new MeasurementListener()));
+		serverhelper.execute(new MeasurementSlimTask(activity, new MeasurementListener()));
 		//listview.setAdapter(listadapter);
 
 		load = (Button) findViewById(R.id.load);
