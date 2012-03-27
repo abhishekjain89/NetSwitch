@@ -92,7 +92,7 @@ public class PrivacyActivity extends Activity
 				finish();
 			}
 		});*/
-		
+
 		acceptButton.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 				finish();

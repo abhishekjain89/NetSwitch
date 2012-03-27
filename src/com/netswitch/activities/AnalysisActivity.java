@@ -45,6 +45,7 @@ import com.netswitch.tasks.SummaryTask;
 import com.netswitch.tasks.ValuesTask;
 import com.netswitch.ui.UIUtil;
 import com.netswitch.ui.adapter.ItemAdapter;
+import com.netswitch.utils.DeviceUtil;
 import com.netswitch.R;
 
 
@@ -235,8 +236,10 @@ public class AnalysisActivity extends Activity
 	 			
 	 			
 	 			if(measure.getNetwork()!=null)
-	 				if(Integer.parseInt(measure.getNetwork().getSignalStrength())>1)
-	 					cells.add(new Row("Mobile",Integer.parseInt(measure.getNetwork().getSignalStrength())*3));
+	 				if(Integer.parseInt(measure.getNetwork().getSignalStrength())>1){
+	 					int percent=DeviceUtil.getSignalPercentage(Integer.parseInt(measure.getNetwork().getSignalStrength()),measure.getNetwork().getNetworkType());
+	 					cells.add(new Row("Mobile",percent));
+	 				}
 	 				else
 	 					cells.add(new Row("Mobile","Not Connected"));
 	 			else

@@ -448,5 +448,37 @@ public class DeviceUtil {
 		}
 		return stateDetail;
 	}
+	
+	public static int getSignalPercentage(int value,String networkType){
+		
+		float scale = 31;
+		
+		if(networkType.equals("HSDPA")){
+			scale=18;
+		}
+		else if(networkType.equals("EVDO_A")){
+			scale=6;
+		}
+		else if(networkType.equals("LTE")){
+			scale=12;
+		}
+		else if(networkType.equals("GPRS")){
+			scale=20;
+		}
+		else if(networkType.equals("UMTS")){
+			scale=20;
+		}
+		else if(networkType.equals("HSPA")){
+			scale=18;
+		}
+		else if(networkType.equals("1xRTT")){
+			scale=6;
+		}
+		
+		float percent = (float)(value*100)/scale;
+		
+		return (int)percent;
+	
+	}
      
 }
