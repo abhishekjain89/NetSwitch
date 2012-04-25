@@ -190,6 +190,12 @@ public class AboutUsActivity extends Activity
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	

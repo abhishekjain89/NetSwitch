@@ -24,9 +24,9 @@ public class Values extends Application{
 	public  int THROUGHPUT_FREQ = (3600/FREQUENCY_SECS)*19; //19 hours
 
 	public  int UPLINKPORT=9912;
-	public  int UPLINK_DURATION=25000;
-	public  int DOWNLINKPORT=9710;
-	public  int DOWNLINK_DURATION=20000;
+	public  int UPLINK_DURATION=8000;
+	public  int DOWNLINKPORT=9712;
+	public  int DOWNLINK_DURATION=8000;
 	public  int DOWNLINK_BUFFER_SIZE=12000;
 
 	public  int TCP_HEADER_SIZE=54;
@@ -107,24 +107,27 @@ public class Values extends Application{
 		}
 
 		try {
-			UPLINKPORT = Integer.parseInt(PreferencesUtil.getDataString("uplink_port",this));
+			//UPLINKPORT = Integer.parseInt(PreferencesUtil.getDataString("uplink_port",this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		try {
-			UPLINK_DURATION = Integer.parseInt(PreferencesUtil.getDataString("uplink_duration",this));
+			//UPLINK_DURATION = Integer.parseInt(PreferencesUtil.getDataString("uplink_duration",this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		try {
-			DOWNLINKPORT = Integer.parseInt(PreferencesUtil.getDataString("downlink_port",this));
+			//DOWNLINKPORT = Integer.parseInt(PreferencesUtil.getDataString("downlink_port",this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		try {
-			DOWNLINK_DURATION = Integer.parseInt(PreferencesUtil.getDataString("downlink_duration",this));
+			//DOWNLINK_DURATION = Integer.parseInt(PreferencesUtil.getDataString("downlink_duration",this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

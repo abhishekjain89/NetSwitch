@@ -217,6 +217,8 @@ public class MeasurementTask extends ServerTask{
 
 		}
 		
+		getResponseListener().onCompleteJob(measurement);
+		
 
 	}
 
@@ -325,6 +327,12 @@ public class MeasurementTask extends ServerTask{
 		}
 
 		public void onFail(String response) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
 			// TODO Auto-generated method stub
 			
 		}

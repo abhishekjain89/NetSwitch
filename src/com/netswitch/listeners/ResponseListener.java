@@ -63,6 +63,8 @@ public interface ResponseListener {
 	
 	public void onCompleteSummary(JSONObject Object);
 
+	public void onCompleteJob(Measurement measurement);
+
 	
 
 }

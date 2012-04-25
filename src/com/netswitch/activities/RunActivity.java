@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+
 import com.netswitch.Values;
 import com.netswitch.helpers.ServiceHelper;
 import com.netswitch.helpers.ThreadPoolHelper;
@@ -77,7 +78,7 @@ public class RunActivity extends BaseActivityGroup
 		session.initDataStore();
 		items = new ArrayList<Model>();
 		//listadapter = new ListAdapter(activity,noteButton,R.layout.item_view,items);
-		serverhelper.execute(new MeasurementSlimTask(activity, new MeasurementListener()));
+		serverhelper.execute(new MeasurementTask(activity, false, true, true, new MeasurementListener()));
 		//listview.setAdapter(listadapter);
 
 		load = (Button) findViewById(R.id.load);
@@ -107,7 +108,7 @@ public class RunActivity extends BaseActivityGroup
 		}
 
 		public void onCompleteMeasurement(Measurement response) {
-			LoadBarHandler.sendEmptyMessage(0);
+			
 			onCompleteOutput(response);
 		}
 
@@ -147,7 +148,7 @@ public class RunActivity extends BaseActivityGroup
 
 		public void onCompleteThroughput(Throughput response) {
 			onCompleteOutput(response);
-
+			LoadBarHandler.sendEmptyMessage(0);
 		}
 
 		public void onCompleteWifi(Wifi response) {
@@ -179,7 +180,23 @@ public class RunActivity extends BaseActivityGroup
 			// TODO Auto-generated method stub
 
 		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			Message msg=Message.obtain(performanceHandler, 0, measurement);
+			performanceHandler.sendMessage(msg);			
+			
+			
+		}
 	}
+	
+	private Handler performanceHandler = new Handler() {
+		public void  handleMessage(Message msg) {
+			Measurement item = (Measurement)msg.obj;
+			PerformanceRating dialog = new PerformanceRating(activity, item);
+			dialog.show();
+		}
+	};
 
 	private Handler toastHandler = new Handler() {
 		public void  handleMessage(Message msg) {

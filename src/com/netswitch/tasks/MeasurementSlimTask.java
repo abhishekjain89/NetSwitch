@@ -231,6 +231,12 @@ public class MeasurementSlimTask extends ServerTask{
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 

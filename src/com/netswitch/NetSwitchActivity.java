@@ -3,6 +3,8 @@ package com.netswitch;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONObject;
 
@@ -46,13 +48,14 @@ public class NetSwitchActivity extends Activity {
 	final String TAG = "getMethodFromClass";
 	boolean currentstate = false;
 	TextView current_conn;
-	TextView advised;
+	
 	Button wifiOn;
 	Button wifiOff;
 	Button mobile_settings;
 	private ThreadPoolHelper serverhelper;
 	Activity activity;
-
+	Timer timer;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -60,27 +63,27 @@ public class NetSwitchActivity extends Activity {
 		setContentView(R.layout.main);
 		activity = this;
 		current_conn = (TextView) findViewById(R.id.current);
-		advised = (TextView) findViewById(R.id.advised);
+	
 		wifiOn = (Button) findViewById(R.id.wifi_on);
 		wifiOff = (Button) findViewById(R.id.wifi_off);
 		mobile_settings = (Button) findViewById(R.id.mobile_settings);
 
 		serverhelper = new ThreadPoolHelper(1,30);
 
-		UpdateValues(0);
+		//UpdateValues(10000);
 
 
 		wifiOn.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 				WifiSwitchUtil.changeWifiState(true,activity);
-				UpdateValues(6000);
+				//UpdateValues(6000);
 			}
 		});
 
 		wifiOff.setOnClickListener(new OnClickListener()  {
 			public void onClick(View v) {	
 				WifiSwitchUtil.changeWifiState(false,activity);
-				UpdateValues(6000);
+				//UpdateValues(6000);
 			}
 		});
 
@@ -89,11 +92,22 @@ public class NetSwitchActivity extends Activity {
 				Intent intent = new Intent(Intent.ACTION_MAIN);
 				intent.setClassName("com.android.phone", "com.android.phone.Settings");
 				startActivity(intent);
-				UpdateValues(6000);
+				//UpdateValues(6000);
 			}
 		});
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				 UpdateHandler.sendEmptyMessage(0);
+			}
 
-
+		}, 0, 10000);
+	}
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		timer.cancel();
 	}
 
 	public void UpdateValues(int t){
@@ -103,8 +117,14 @@ public class NetSwitchActivity extends Activity {
 			
 		}
 	}
-
-
+	private Handler UpdateHandler = new Handler(){
+		public void  handleMessage(Message msg) {
+			
+			UpdateValues(0);
+			
+		}
+	};
+	
 	private Handler UIHandler = new Handler(){
 		public void  handleMessage(Message msg) {
 			Measurement measure = (Measurement)msg.obj;
@@ -123,7 +143,7 @@ public class NetSwitchActivity extends Activity {
 					if(measure.getWifi().strength>1)
 						if(measure.getWifi().strength>5) advised_text = "Wifi";
 
-				advised.setText(advised_text);
+				//advised.setText(advised_text);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -212,6 +232,12 @@ public class NetSwitchActivity extends Activity {
 		public void onFail(String response) {
 			// TODO Auto-generated method stub
 
+		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

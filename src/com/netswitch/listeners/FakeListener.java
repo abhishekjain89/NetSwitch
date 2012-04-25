@@ -98,6 +98,12 @@ public class FakeListener extends BaseResponseListener{
 		
 	}
 
+	@Override
+	public void onCompleteJob(Measurement measurement) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 

@@ -83,13 +83,15 @@ public class MobileNetworkTask extends ServerTask{
 			this.killAll();
 			return;
 		}
-		// TODO Run ping task with list of things such as ip address and number of pings	
-		//android.os.Debug.startMethodTracing("lsd");
+		
 		Values session = this.getValues();
 		ThreadPoolHelper serverhelper = new ThreadPoolHelper(session.THREADPOOL_MAX_SIZE,session.THREADPOOL_KEEPALIVE_SEC);
 
 		serverhelper.execute(new DeviceTask(getContext(),new HashMap<String,String>(), new MeasurementListener(), measurement));
 		serverhelper.execute(new WifiSimpleTask(getContext(),new HashMap<String,String>(), new MeasurementListener()));
+		serverhelper.execute(new UsageTask(getContext(),new HashMap<String,String>(), true, new MeasurementListener()));
+		serverhelper.execute(new BatteryTask(getContext(),new HashMap<String,String>(), new MeasurementListener()));
+		
 		signalRunning = true;
 
 		SignalHandler.sendEmptyMessage(0);
@@ -125,7 +127,7 @@ public class MobileNetworkTask extends ServerTask{
 
 	@Override
 	public String toString() {
-		return "Measurement Task";
+		return "Signal Task";
 	}
 
 
@@ -192,6 +194,8 @@ public class MobileNetworkTask extends ServerTask{
 			}
 		}
 		public void onCompleteUsage(Usage usage) {
+			measurement.setUsage(usage);
+			getResponseListener().onCompleteUsage(usage);
 
 		}
 
@@ -230,6 +234,12 @@ public class MobileNetworkTask extends ServerTask{
 		public void onFail(String response) {
 			// TODO Auto-generated method stub
 
+		}
+
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

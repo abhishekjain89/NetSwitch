@@ -2,6 +2,8 @@ package com.netswitch.activities;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +69,7 @@ public class AnalysisActivity extends Activity
 	private Activity activity;
 	private ThreadPoolHelper serverhelper;
 	private Values session = null;
-	
+	Timer timer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -125,9 +127,40 @@ public class AnalysisActivity extends Activity
 				startActivity(myIntent);
 			}
 		});
+		
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				UpdateHandler.sendEmptyMessage(0);
+			}
+
+		}, 0, 10000);
 
 
-	}	
+	}
+	public void UpdateValues(int t){
+		serverhelper.execute(new MobileNetworkTask(this,t,new Listener()));
+		if(t>0){
+			serverhelper.execute(new MobileNetworkTask(this,2*t,new Listener()));
+			
+		}
+	}
+	
+	private Handler UpdateHandler = new Handler(){
+		public void  handleMessage(Message msg) {
+			
+			UpdateValues(0);
+			
+		}
+	};
+	
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		timer.cancel();
+	}
 
 	public class Listener extends BaseResponseListener{
 
@@ -210,6 +243,12 @@ public class AnalysisActivity extends Activity
 
 		}
 
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	}
 	
 	private Handler UIHandler = new Handler(){
@@ -242,6 +281,8 @@ public class AnalysisActivity extends Activity
 	 			else
  					cells.add(new Row("Mobile","Not Connected"));
 				
+	 			cells.add(new Row("Battery",measure.getBattery().getLevel()));
+	 			
 				if(cells.size()!=0){
 					ItemAdapter itemadapter = new ItemAdapter(activity,cells);
 					for(Row cell: cells)
@@ -252,6 +293,8 @@ public class AnalysisActivity extends Activity
 					itemadapter.notifyDataSetChanged();
 					UIUtil.setListViewHeightBasedOnChildren(listview,itemadapter);
 				}
+				
+			
 				
 				
 			} catch (Exception e) {

@@ -10,6 +10,7 @@ import com.netswitch.utils.SHA1Util;
 import com.netswitch.R;
 
 import android.content.Context;
+import android.graphics.Color;
 
 public class Measurement implements MainModel{
 	
@@ -222,14 +223,26 @@ public class Measurement implements MainModel{
 	
 	public ArrayList<Row> getDisplayData(){
 		ArrayList<Row> data = new ArrayList<Row>();
-		data.add(new Row("Latency (Avg,Max,Min,Std)"));
+		data.add(new Row("Latency per Server"));
 		for(Ping p: pings){
+			
+			String message = p.measure.getAverage()+" ms";
+			
+			int color = Color.GREEN;
+			
+			if(p.measure.getAverage()<0){
+				color = Color.RED;
+			} else if(p.measure.getAverage()>1000){
+				color = Color.YELLOW;
+			}
+			
+			/*
 			ArrayList<String> str = new ArrayList<String>();
 			str.add(""+(int)p.measure.getAverage());
 			str.add(""+(int)p.measure.getMax());
 			str.add(""+(int)p.measure.getMin());
-			str.add(""+(int)p.measure.getStddev());
-			data.add(new Row(p.getDst().getTagname(),str));
+			str.add(""+(int)p.measure.getStddev());*/
+			data.add(new Row(p.getDst().getTagname(),message,R.layout.cell_view_keytextvaluecolor,Color.GREEN));
 		}
 		
 		return data;

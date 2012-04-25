@@ -51,29 +51,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/welcome1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:text="Advised Switch"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/advised"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#F00"
-        android:textSize="35dp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/key"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

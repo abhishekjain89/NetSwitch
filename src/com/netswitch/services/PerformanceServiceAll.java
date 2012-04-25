@@ -249,6 +249,11 @@ public class PerformanceServiceAll extends Service{
 				}
 			}
 		};
+		@Override
+		public void onCompleteJob(Measurement measurement) {
+			// TODO Auto-generated method stub
+			
+		}
 
 	}
 

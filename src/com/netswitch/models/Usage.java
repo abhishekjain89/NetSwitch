@@ -120,7 +120,12 @@ public class Usage implements MainModel{
 		data.add(new Row("Total Apps",""+applications.size()));
 		data.add(new Row("Application Usage"));
 
+		try{
 		Collections.sort(applications);
+		}
+		catch(Exception e){
+			
+		}
 		for(Application app: applications){
 			
 			if(isOurApp(app)) continue;
